@@ -32,7 +32,7 @@
  ###Association
 
 -belongs_to :user
--has_one :address
+-has_one :user_item
 
 
 ##user_itemsテーブル
@@ -60,5 +60,5 @@ addressテーブル
 
  ###Association
 
-- belongs_to :user_items
+- belongs_to :user_item
 
