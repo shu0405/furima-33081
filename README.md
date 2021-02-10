@@ -1,24 +1,53 @@
-# README
+##usersテーブル
+| Columun     |  Type   | Options     |
+| ----------- | ------- | ----------- |
+| emal        | string  | null: false |
+| password    | string  | null: false |
+| name        | string  | null: false |
+| nickname    | string  | null: false |
+| birthday    | string  | null: false |
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
 
-Things you may want to cover:
+###Association
 
-* Ruby version
+-has_many :items
+-belongs_to :buyer
 
-* System dependencies
+##itemsテーブル
+| Columun     |   Type   |  Options          |
+| ----------- | -------- |  -----------      |
+| product name| string   |  null: false      |
+| description | text     |  null: false      |
+|  category   | string   |  null: false      |
+|    state    | string   |  null: false      |
+|   burden    | string   |  null: false      |
+|    area     | string   |  null: false      |
+|     days    | string   |  null: false      |
+|    price    | string   |  null: false      |
+|    user     |references| foreign_key: true |
 
-* Configuration
 
-* Database creation
+ ###Association
 
-* Database initialization
+-belongs_to :user
+-belongs_to :buyer
 
-* How to run the test suite
+buyersテーブル
+| Columun         |  Type    | Options           |
+| -----------     | -------- | -----------       |
+| card namber     | string   | null: false       |
+| expiration date | string   | null: false       | 
+| security code   | string   | null: false       |
+| postal code     | string   | null: false       |
+| postal code     | string   | null: false       |
+| prefectures     | string   | null: false       |
+| municipality    | string   | null: false       |
+| address         | string   | null: false       |
+| building name   | string   | null: false       |
+| phone number    | string   | null: false       |
+| user            |references| foreign_key: true |
 
-* Services (job queues, cache servers, search engines, etc.)
+ ###Association
 
-* Deployment instructions
-
-* ...
+- belongs_to :user
+- belongs_to :item
