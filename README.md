@@ -13,8 +13,7 @@
 ###Association
 
 - has_many :user_items
-- has_many :items, through: room_users
-- belongs_to :address
+- has_many :items
 
 ##itemsテーブル
 | Columun     |   Type   |  Options          |
@@ -46,6 +45,7 @@
 
 -belongs_to :user
 -belongs_to :item
+-has_one :address
 
 addressテーブル
 | Columun         |  Type    | Options           |
@@ -61,4 +61,4 @@ addressテーブル
  ###Association
 
 - belongs_to :user_items
-- belongs_to :item
+
