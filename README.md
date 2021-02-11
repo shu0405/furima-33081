@@ -47,7 +47,7 @@
 -belongs_to :item
 -has_one :address
 
-addressテーブル
+addressesテーブル
 | Columun         |  Type    | Options           |
 | -----------     | -------- | -----------       |
 | postal_code     | string   | null: false       |
@@ -56,7 +56,7 @@ addressテーブル
 | address_numbar  | string   | null: false       |
 | building_name   | string   |                   |
 | phone_number    | string   | null: false       |
-| user            |references| foreign_key: true |
+| user_item       |references| foreign_key: true |
 
  ###Association
 
