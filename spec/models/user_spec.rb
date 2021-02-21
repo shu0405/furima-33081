@@ -27,6 +27,11 @@ describe User do
         @user.valid?
         expect(@user.errors.full_messages).to include("Email can't be blank")
       end
+      it "emailに@がなければ登録できない" do
+        @user.email = "5516shugmail.com"
+        @user.valid?
+        expect(@user.errors.full_messages).to include("Email is invalid")
+      end
       it "重複したemailが存在する場合登録できない" do
         @user.save
         another_user = FactoryBot.build(:user)
@@ -122,7 +127,7 @@ describe User do
         expect(@user.errors.full_messages).to include("Katakana first name Full-width katakana characters")
       end
       it "katakana_surname_nameはカタカナ以外の全角文字では登録できない" do
-        @user.katakana_surname_name = "あああ"
+        @user.katakana_surname_name = "ああああああ"
         @user.valid?
         expect(@user.errors.full_messages).to include("Katakana surname name Full-width katakana characters")
       end
