@@ -9,13 +9,9 @@ describe User do
       it "nicknameとemail、passwordとpassword_confirmation,birthday,first_name,surname_name,katakana_first_name,katakana_surname_nameが存在すれば登録できる" do
         expect(@user).to be_valid
       end
-      it "nicknameが6文字以下で登録できる" do
-        @user.nickname = "aaaaaa"
-        expect(@user).to be_valid
-      end
       it "passwordが6文字以上であれば登録できる" do
-        @user.password = "000000"
-        @user.password_confirmation = "000000"
+        @user.password = "s000000"
+        @user.password_confirmation = "s000000"
         expect(@user).to be_valid
       end
     end
@@ -42,6 +38,12 @@ describe User do
         @user.password = ""
         @user.valid?
         expect(@user.errors.full_messages).to include("Password can't be blank")
+      end
+      it "passwordが半角英数字混合での入力でなければ登録できない" do
+        @user.password = "aaaaaa"
+        @user.password_confirmation = "aaaaaa"
+        @user.valid?
+        expect(@user.errors.full_messages).to include("Password Include both letters and numbers")
       end
       it "passwordが5文字以下であれば登録できない" do
         @user.password = "00000"
@@ -78,6 +80,26 @@ describe User do
         @user.katakana_surname_name = ""
         @user.valid?
         expect(@user.errors.full_messages).to include("Katakana surname name can't be blank")
+      end
+      it "first_nameは漢字、平仮名でないと登録できない" do
+        @user.first_name = "aaa"
+        @user.valid?
+        expect(@user.errors.full_messages).to include("First name Full-width characters")
+      end
+      it "surname_nameは漢字、平仮名でないと登録できない" do
+        @user.surname_name = "aaa"
+        @user.valid?
+        expect(@user.errors.full_messages).to include("Surname name Full-width characters")
+      end
+      it "katakana_first_nameはカタカナでないと登録できない" do
+        @user.katakana_first_name = "aaa"
+        @user.valid?
+        expect(@user.errors.full_messages).to include("Katakana first name Full-width katakana characters")
+      end
+      it "katakana_surname_nameはカタカナでないと登録できない" do
+        @user.katakana_surname_name = "aaa"
+        @user.valid?
+        expect(@user.errors.full_messages).to include("Katakana surname name Full-width katakana characters")
       end
     end
   end
