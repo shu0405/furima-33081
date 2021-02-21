@@ -39,6 +39,21 @@ describe User do
         @user.valid?
         expect(@user.errors.full_messages).to include("Password can't be blank")
       end
+      it "passwordが半角数字のみでは登録できない" do
+        @user.password = "111111"
+        @user.valid?
+        expect(@user.errors.full_messages).to include("Password Include both letters and numbers")
+      end
+      it "passwordが全角文字では登録できない" do
+        @user.password = "ああああああ"
+        @user.valid?
+        expect(@user.errors.full_messages).to include("Password Include both letters and numbers")
+      end
+      it "passwordとpassword_confirmationが一致していないと登録できない" do
+        @user.password_confirmation = "000000s"
+        @user.valid?
+        expect(@user.errors.full_messages).to include("Password confirmation doesn't match Password")
+      end
       it "passwordが半角英数字混合での入力でなければ登録できない" do
         @user.password = "aaaaaa"
         @user.password_confirmation = "aaaaaa"
@@ -98,6 +113,16 @@ describe User do
       end
       it "katakana_surname_nameはカタカナでないと登録できない" do
         @user.katakana_surname_name = "aaa"
+        @user.valid?
+        expect(@user.errors.full_messages).to include("Katakana surname name Full-width katakana characters")
+      end
+      it "katakana_first_nameはカタカナ以外の全角文字では登録できない" do
+        @user.katakana_first_name = "あああ"
+        @user.valid?
+        expect(@user.errors.full_messages).to include("Katakana first name Full-width katakana characters")
+      end
+      it "katakana_surname_nameはカタカナ以外の全角文字では登録できない" do
+        @user.katakana_surname_name = "あああ"
         @user.valid?
         expect(@user.errors.full_messages).to include("Katakana surname name Full-width katakana characters")
       end
