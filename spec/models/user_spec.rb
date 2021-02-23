@@ -29,7 +29,7 @@ describe User do
       end
       it "emailに@がなければ登録できない" do
         @user.email = "5516shugmail.com"
-        @user.valid?
+        @user.valid? 
         expect(@user.errors.full_messages).to include("Email is invalid")
       end
       it "重複したemailが存在する場合登録できない" do
