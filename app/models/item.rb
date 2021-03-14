@@ -2,6 +2,10 @@ class Item < ApplicationRecord
   extend ActiveHash::Associations::ActiveRecordExtensions
   belongs_to :user
   belongs_to :burden
+  belongs_to :area
+  belongs_to :category
+  belongs_to :day
+  belongs_to :state
   has_one_attached :image
 
   with_options presence: true do
