@@ -5,6 +5,7 @@ class ItemsController < ApplicationController
 
   def index
     @items = Item.order("created_at DESC")
+    @user_item = UserItem.all
   end
 
   def new
@@ -55,7 +56,7 @@ end
   end
 
   def contributor_confirmation
-    redirect_to root_path unless current_user.id == @item.user_id
+    redirect_to root_path if current_user.id == @item.user_id || @item.user_item.present?
   end
 
 end

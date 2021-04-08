@@ -1,7 +1,9 @@
 class AddressesController < ApplicationController
+  before_action :authenticate_user!
+  before_action :set_item, only: [ :index, :create]
+  before_action :contributor_confirmation
   
   def index
-    @item = Item.find(params[:item_id])
     @address_form = AddressForm.new
   end
 
@@ -10,7 +12,6 @@ class AddressesController < ApplicationController
   end
 
   def create
-    @item = Item.find(params[:item_id])
     @address_form = AddressForm.new(address_params)
     if @address_form.valid?
      pay_item
@@ -34,6 +35,14 @@ class AddressesController < ApplicationController
         card: address_params[:token],   
         currency: 'jpy'               
       )
+  end
+
+  def set_item
+    @item = Item.find(params[:item_id])
+  end
+
+  def contributor_confirmation
+    redirect_to root_path if current_user.id == @item.user_id || @item.user_item.present?
   end
 
 end
