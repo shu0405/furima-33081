@@ -36,12 +36,12 @@ class ItemsController < ApplicationController
     end
  end 
 
-def update
-   if  @item.update(item_params)
-    redirect_to item_path
-   else
-    render :edit
-   end 
+ def update
+  if  @item.update(item_params)
+   redirect_to item_path
+  else
+   render :edit
+  end 
 end
   
   private
@@ -55,7 +55,7 @@ end
   end
 
   def contributor_confirmation
-    redirect_to root_path unless current_user.id == @item.user_id
+    redirect_to root_path if current_user.id == @item.user_id || @item.user_item.present?
   end
 
 end
