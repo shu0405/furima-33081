@@ -3,7 +3,10 @@ require 'rails_helper'
 RSpec.describe AddressForm, type: :model do
   describe '商品購入機能の確認' do
     before do
-      @address_form = FactoryBot.build(:address_form)
+      user = FactoryBot.create(:user)
+      item = FactoryBot.create(:item)
+      @address_form = FactoryBot.build(:address_form,item_id:item.id,user_id:user.id)
+      sleep 0.1 # 0.1秒待機
     end
 
   context '商品登録がうまくいくとき' do
@@ -30,6 +33,11 @@ RSpec.describe AddressForm, type: :model do
     end
     it '電話番号が半角でないと保存できないこと' do
       @address_form.phone_number = "０９０１２３４５６７８"
+      @address_form.valid?
+      expect(@address_form.errors.full_messages).to include("Phone number is invalid. Input half-width numbers.")
+    end
+    it '電話番号が12桁以上では保存できないこと' do
+      @address_form.phone_number = "090123456789"
       @address_form.valid?
       expect(@address_form.errors.full_messages).to include("Phone number is invalid. Input half-width numbers.")
     end

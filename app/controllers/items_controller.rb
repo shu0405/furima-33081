@@ -5,7 +5,6 @@ class ItemsController < ApplicationController
 
   def index
     @items = Item.order("created_at DESC")
-    @user_item = UserItem.all
   end
 
   def new
