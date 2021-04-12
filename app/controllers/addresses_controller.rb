@@ -1,14 +1,10 @@
 class AddressesController < ApplicationController
   before_action :authenticate_user!
-  before_action :set_item, only: [ :index, :create]
+  before_action :set_item
   before_action :contributor_confirmation
   
   def index
     @address_form = AddressForm.new
-  end
-
-  def new
-    @address_form = AddressForm.new   
   end
 
   def create
