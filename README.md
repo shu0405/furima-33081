@@ -14,6 +14,7 @@
 
 - has_many :user_items
 - has_many :items
+- has_many :comments
 
 ##itemsテーブル
 | Columun     |   Type   |  Options          |
@@ -33,6 +34,7 @@
 
 -belongs_to :user
 -has_one :user_item
+- has_many :comments
 
 
 ##user_itemsテーブル
@@ -71,5 +73,5 @@ commentsテーブル
 
  ###Association
 
--has_many :users
--has_many :prototypes
+-belongs_to :user
+-belongs_to :item
