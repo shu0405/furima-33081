@@ -62,3 +62,14 @@ addressesテーブル
 
 - belongs_to :user_item
 
+commentsテーブル
+| Columun     |  Type    | Options           |
+| ----------- | -------- | -----------       |
+| text        | string   | null: false       |
+| user        |references| foreign_key: true | 
+| item        |references| foreign_key: true |
+
+ ###Association
+
+-has_many :users
+-has_many :prototypes
