@@ -8,6 +8,7 @@ class Item < ApplicationRecord
   belongs_to :state
   has_one_attached :image
   has_one :user_item
+  has_many :comments
 
 
   with_options presence: true do

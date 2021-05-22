@@ -14,6 +14,7 @@
 
 - has_many :user_items
 - has_many :items
+- has_many :comments
 
 ##itemsテーブル
 | Columun     |   Type   |  Options          |
@@ -33,6 +34,7 @@
 
 -belongs_to :user
 -has_one :user_item
+- has_many :comments
 
 
 ##user_itemsテーブル
@@ -62,3 +64,14 @@ addressesテーブル
 
 - belongs_to :user_item
 
+commentsテーブル
+| Columun     |  Type    | Options           |
+| ----------- | -------- | -----------       |
+| text        | string   | null: false       |
+| user        |references| foreign_key: true | 
+| item        |references| foreign_key: true |
+
+ ###Association
+
+-belongs_to :user
+-belongs_to :item
