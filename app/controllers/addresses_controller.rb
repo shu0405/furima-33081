@@ -3,7 +3,6 @@ class AddressesController < ApplicationController
   before_action :set_item
   before_action :contributor_confirmation
 
-  # メッセージ投稿機能の追加
   
   def index
     @address_form = AddressForm.new

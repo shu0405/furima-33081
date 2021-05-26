@@ -1,6 +1,6 @@
 import consumer from "./consumer"
 
-consumer.subscriptions.create("MessageChannel", {
+consumer.subscriptions.create("CommentChannel", {
   connected() {
     // Called when the subscription is ready for use on the server
   },
@@ -11,9 +11,9 @@ consumer.subscriptions.create("MessageChannel", {
 
   received(data) {
     const html = `<p>${data.content.text}</p>`;
-    const messages = document.getElementById('messages');
-    const newMessage = document.getElementById('message_text');
-    messages.insertAdjacentHTML('afterbegin', html);
-    newMessage.value='';
+    const comments = document.getElementById('comment');
+    const newComment = document.getElementById('comment_text');
+    comments.insertAdjacentHTML('afterbegin', html);
+    newComment.value='';
   }
 });

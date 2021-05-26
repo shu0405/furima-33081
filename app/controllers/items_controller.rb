@@ -27,6 +27,8 @@ class ItemsController < ApplicationController
   
 
   def show
+      @comments = Comment.all
+      @comment = Comment.new
   end
 
   def destroy

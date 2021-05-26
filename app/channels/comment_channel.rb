@@ -1,7 +1,6 @@
-class MessageChannel < ApplicationCable::Channel
+class CommentChannel < ApplicationCable::Channel
   def subscribed
-    stream_from "message_channel"
-  end
+    stream_from "comment  _channel"
   end
 
   def unsubscribed
