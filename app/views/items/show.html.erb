@@ -80,12 +80,14 @@
   <div class="comment-box">
    <%= form_with model: [@item, @comment], local: true do |f| %>
     <form>
-      <textarea class="comment-text"></textarea>
+      
+      <%= f.text_area :text, class: "comment-text" %>
       <p class="comment-warn">
         相手のことを考え丁寧なコメントを心がけましょう。
         <br>
         不快な言葉遣いなどは利用制限や退会処分となることがあります。
       </p>
+      
       <button type="submit" class="comment-btn">
         <%= image_tag "comment.png" ,class:"comment-flag-icon" ,width:"20",height:"25"%>
         <span>コメントする<span>
